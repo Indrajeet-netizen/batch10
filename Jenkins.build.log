@@ -1,0 +1,327 @@
+Started by user Indrajeet Chaudhary
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/bootcamp10-casestudy
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (SCM)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Indrajeet-netizen/batch10 # timeout=10
+Fetching upstream changes from https://github.com/Indrajeet-netizen/batch10
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/Indrajeet-netizen/batch10 +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 443da29ab9975936779ebdee0bb529ae73edb09f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 443da29ab9975936779ebdee0bb529ae73edb09f # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 443da29ab9975936779ebdee0bb529ae73edb09f # timeout=10
+Commit message: "Delete dockerfile"
+ > git rev-list --no-walk 443da29ab9975936779ebdee0bb529ae73edb09f # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build & SonarQube analysis)
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonarqube
+[Pipeline] {
+[Pipeline] sh
++ mvn clean package sonar:sonar
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is missing, no dependency information available
+[[1;33mWARNING[m] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failure to find org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 in https://repo.maven.apache.org/maven2 was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mcom.casestudy:bootcamp[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding bootcamp 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.1.0:clean[m [1m(default-clean)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Deleting /var/lib/jenkins/workspace/bootcamp10-casestudy/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.1.0:resources[m [1m(default-resources)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:compile[m [1m(default-compile)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 2 source files to /var/lib/jenkins/workspace/bootcamp10-casestudy/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.1.0:testResources[m [1m(default-testResources)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /var/lib/jenkins/workspace/bootcamp10-casestudy/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:testCompile[m [1m(default-testCompile)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 1 source file to /var/lib/jenkins/workspace/bootcamp10-casestudy/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.22.2:test[m [1m(default-test)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m]  T E S T S
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m] Running com.[1mTestMessageController[m
+19:42:21.328 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:42:21.365 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:42:21.395 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.TestMessageController] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:42:21.419 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.TestMessageController], using SpringBootContextLoader
+19:42:21.422 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.TestMessageController]: class path resource [com/TestMessageController-context.xml] does not exist
+19:42:21.423 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.TestMessageController]: class path resource [com/TestMessageControllerContext.groovy] does not exist
+19:42:21.423 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.TestMessageController]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:42:21.426 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.TestMessageController]: TestMessageController does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:42:21.497 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.TestMessageController]
+19:42:21.615 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/var/lib/jenkins/workspace/bootcamp10-casestudy/target/classes/com/Application.class]
+19:42:21.621 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.Application for test class com.TestMessageController
+19:42:21.763 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.TestMessageController]: using defaults.
+19:42:21.763 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+19:42:21.777 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
+19:42:21.778 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+19:42:21.779 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3e96bacf, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@484970b0, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4470f8a6, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7c83dc97, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7748410a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@740773a3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@37f1104d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@55740540, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@60015ef5, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2f54a33d]
+19:42:21.784 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@343570b7 testClass = TestMessageController, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@157853da testClass = TestMessageController, locations = '{}', classes = '{class com.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@568bf312, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@45f45fa1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@212bf671, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3b2da18f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+19:42:21.819 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.7.RELEASE)
+
+2021-06-04 19:42:22.281  INFO 12604 --- [           main] com.TestMessageController                : Starting TestMessageController on master with PID 12604 (started by jenkins in /var/lib/jenkins/workspace/bootcamp10-casestudy)
+2021-06-04 19:42:22.285  INFO 12604 --- [           main] com.TestMessageController                : No active profile set, falling back to default profiles: default
+2021-06-04 19:42:25.521  INFO 12604 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-04 19:42:25.717  INFO 12604 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2021-06-04 19:42:25.956  INFO 12604 --- [           main] com.TestMessageController                : Started TestMessageController in 4.125 seconds (JVM running for 5.421)
+2021-06-04 19:42:26.307  INFO 12604 --- [           main] com.MessageController                    : hello, its an info
+2021-06-04 19:42:26.321  INFO 12604 --- [           main] com.MessageController                    : hello from test app1
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m2[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.081 s - in com.[1mTestMessageController[m
+2021-06-04 19:42:26.396  INFO 12604 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Results:
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1;32mTests run: 2, Failures: 0, Errors: 0, Skipped: 0[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:3.1.2:jar[m [1m(default-jar)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Building jar: /var/lib/jenkins/workspace/bootcamp10-casestudy/target/bootcamp-0.0.1-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:2.1.7.RELEASE:repackage[m [1m(repackage)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Replacing main artifact with repackaged archive
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:2.1.7.RELEASE:repackage[m [1m(default)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] Replacing main artifact with repackaged archive
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mcom.casestudy:bootcamp[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding bootcamp 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;33mWARNING[m] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is missing, no dependency information available
+[[1;33mWARNING[m] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failure to find org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 in https://repo.maven.apache.org/maven2 was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msonar-maven-plugin:3.9.0.2155:sonar[m [1m(default-cli)[m @ [36mbootcamp[0;1m ---[m
+[[1;34mINFO[m] User cache: /var/lib/jenkins/.sonar/cache
+[[1;34mINFO[m] SonarQube version: 7.1.0
+[[1;34mINFO[m] Default locale: "en", source code encoding: "UTF-8"
+[[1;34mINFO[m] Publish mode
+[[1;34mINFO[m] Load global settings
+[[1;34mINFO[m] Load global settings (done) | time=114ms
+[[1;34mINFO[m] Server id: AXnE45epHcAUt01I38YM
+[[1;34mINFO[m] User cache: /var/lib/jenkins/.sonar/cache
+[[1;34mINFO[m] Load plugins index
+[[1;34mINFO[m] Load plugins index (done) | time=82ms
+[[1;34mINFO[m] Load/download plugins
+[[1;34mINFO[m] Load/download plugins (done) | time=21ms
+[[1;34mINFO[m] Process project properties
+[[1;34mINFO[m] Load project repositories
+[[1;34mINFO[m] Load project repositories (done) | time=121ms
+[[1;34mINFO[m] Load quality profiles
+[[1;34mINFO[m] Load quality profiles (done) | time=40ms
+[[1;34mINFO[m] Load active rules
+[[1;34mINFO[m] Load active rules (done) | time=1089ms
+[[1;34mINFO[m] Load metrics repository
+[[1;34mINFO[m] Load metrics repository (done) | time=74ms
+[[1;34mINFO[m] Project key: com.casestudy:bootcamp
+[[1;34mINFO[m] Project base dir: /var/lib/jenkins/workspace/bootcamp10-casestudy
+[[1;34mINFO[m] -------------  Scan bootcamp
+[[1;34mINFO[m] Load server rules
+[[1;34mINFO[m] Load server rules (done) | time=276ms
+[[1;34mINFO[m] Base dir: /var/lib/jenkins/workspace/bootcamp10-casestudy
+[[1;34mINFO[m] Working dir: /var/lib/jenkins/workspace/bootcamp10-casestudy/target/sonar
+[[1;34mINFO[m] Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] Test paths: src/test/java
+[[1;34mINFO[m] Source encoding: UTF-8, default locale: en
+[[1;34mINFO[m] Index files
+[[1;34mINFO[m] 4 files indexed
+[[1;34mINFO[m] Quality profile for java: Sonar way
+[[1;34mINFO[m] Quality profile for xml: Sonar way
+[[1;34mINFO[m] Sensor JavaSquidSensor [java]
+[[1;34mINFO[m] Configured Java source version (sonar.java.source): 8
+[[1;34mINFO[m] JavaClasspath initialization
+[[1;34mINFO[m] JavaClasspath initialization (done) | time=15ms
+[[1;34mINFO[m] JavaTestClasspath initialization
+[[1;34mINFO[m] JavaTestClasspath initialization (done) | time=3ms
+[[1;34mINFO[m] Java Main Files AST scan
+[[1;34mINFO[m] 2 source files to be analyzed
+[[1;34mINFO[m] 2/2 source files have been analyzed
+[[1;33mWARNING[m] Classes not found during the analysis : [javax.annotation.meta.When]
+[[1;34mINFO[m] Java Main Files AST scan (done) | time=796ms
+[[1;34mINFO[m] Java Test Files AST scan
+[[1;34mINFO[m] 1 source files to be analyzed
+[[1;34mINFO[m] 1/1 source files have been analyzed
+[[1;34mINFO[m] Java Test Files AST scan (done) | time=84ms
+[[1;34mINFO[m] Sensor JavaSquidSensor [java] (done) | time=1609ms
+[[1;34mINFO[m] Sensor SurefireSensor [java]
+[[1;34mINFO[m] parsing [/var/lib/jenkins/workspace/bootcamp10-casestudy/target/surefire-reports]
+[[1;34mINFO[m] Sensor SurefireSensor [java] (done) | time=108ms
+[[1;34mINFO[m] Sensor JaCoCoSensor [java]
+[[1;34mINFO[m] Sensor JaCoCoSensor [java] (done) | time=1ms
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java]
+[[1;34mINFO[m] 1 source files to be analyzed
+[[1;34mINFO[m] 1/1 source files have been analyzed
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java] (done) | time=530ms
+[[1;34mINFO[m] Sensor XML Sensor [xml]
+[[1;34mINFO[m] Sensor XML Sensor [xml] (done) | time=131ms
+[[1;34mINFO[m] Sensor Zero Coverage Sensor
+[[1;34mINFO[m] Sensor Zero Coverage Sensor (done) | time=19ms
+[[1;34mINFO[m] Sensor CPD Block Indexer
+[[1;34mINFO[m] Sensor CPD Block Indexer (done) | time=22ms
+[[1;34mINFO[m] 1 file had no CPD blocks
+[[1;34mINFO[m] Calculating CPD for 1 file
+[[1;34mINFO[m] CPD calculation finished
+[[1;34mINFO[m] Analysis report generated in 155ms, dir size=49 KB
+[[1;34mINFO[m] Analysis reports compressed in 16ms, zip size=15 KB
+[[1;34mINFO[m] Analysis report uploaded in 22ms
+[[1;34mINFO[m] ANALYSIS SUCCESSFUL, you can browse http://34.134.114.86:9000/dashboard/index/com.casestudy:bootcamp
+[[1;34mINFO[m] Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[[1;34mINFO[m] More about the report processing at http://34.134.114.86:9000/api/ce/task?id=AXnYjH1VHcAUt01I39ST
+[[1;34mINFO[m] Task total time: 6.815 s
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  20.241 s
+[[1;34mINFO[m] Finished at: 2021-06-04T19:42:36Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (publish report)
+[Pipeline] echo
+ Publishing HTML report..
+[Pipeline] junit
+Recording test results
+None of the test reports contained any result
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (docker build)
+[Pipeline] echo
+starting docker build
+[Pipeline] sh
++ docker build . -t indrajeet007/dockeransible1:1.0.1
+Sending build context to Docker daemon  17.72MB
+
+Step 1/3 : FROM openjdk:8-jdk-alpine
+ ---> a3562aa0b991
+Step 2/3 : COPY target/*.jar app.jar
+ ---> 8de03f8944a8
+Step 3/3 : ENTRYPOINT ["java","-jar","/app.jar"]
+ ---> Running in fd05888d62b0
+Removing intermediate container fd05888d62b0
+ ---> a28b31a94301
+Successfully built a28b31a94301
+Successfully tagged indrajeet007/dockeransible1:1.0.1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (dockerHub push)
+[Pipeline] withCredentials
+Masking supported pattern matches of $dockerHubPwd
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [dockerHubPwd]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ docker login -u **** -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] sh
++ docker push indrajeet007/dockeransible1:1.0.1
+The push refers to repository [docker.io/indrajeet007/dockeransible1]
+942bc760906d: Preparing
+ceaf9e1ebef5: Preparing
+9b9b7f3d56a0: Preparing
+f1b5933fe4b5: Preparing
+9b9b7f3d56a0: Layer already exists
+ceaf9e1ebef5: Layer already exists
+f1b5933fe4b5: Layer already exists
+942bc760906d: Pushed
+1.0.1: digest: sha256:7c5e3f1d4c1c7bbb009411cfc621acbd547c9d410d82c592814b5b4a7e92c2c9 size: 1159
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (docker deploy)
+[Pipeline] ansiblePlaybook
+[bootcamp10-casestudy] $ sshpass ******** /usr/bin/ansible-playbook docker-deploy.yml -b --become-user root -u indrajeet_tcs007 -k
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[DEPRECATION WARNING]: Distribution Ubuntu 18.04 on host slave1 should use 
+/usr/bin/python3, but is using /usr/bin/python for backward compatibility with 
+prior Ansible releases. A future Ansible release will default to using the 
+discovered platform python for this host. See https://docs.ansible.com/ansible/
+2.9/reference_appendices/interpreter_discovery.html for more information. This 
+feature will be removed in version 2.12. Deprecation warnings can be disabled 
+by setting deprecation_warnings=False in ansible.cfg.
+ok: [slave1]
+
+TASK [Install python pip] ******************************************************
+ok: [slave1]
+
+TASK [Install docker] **********************************************************
+ok: [slave1]
+
+TASK [start docker] ************************************************************
+ok: [slave1]
+
+TASK [Install docker-py python module] *****************************************
+ok: [slave1]
+
+TASK [Start the container] *****************************************************
+ok: [slave1]
+
+PLAY RECAP *********************************************************************
+slave1                     : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+job completed successfully
+[Pipeline] emailext
+Sending email to: indrajeet.tcs007@gmail.com
+Connection error sending email, retrying once more in 10 seconds...
+Connection error sending email, retrying once more in 10 seconds...
+Failed after second try sending email
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
