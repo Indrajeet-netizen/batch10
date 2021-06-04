@@ -1,0 +1,55 @@
+pipeline{
+    agent any
+    stages{
+        stage('SCM'){
+            steps{
+                git 'https://github.com/Indrajeet-netizen/batch10'
+            }
+        }
+        stage("build & SonarQube analysis") {
+          steps {
+              withSonarQubeEnv('sonarqube') {
+                 sh 'mvn clean package sonar:sonar'
+              }
+          }
+        }
+        stage('publish report'){
+            steps {
+                echo " Publishing HTML report.."
+                junit allowEmptyResults: true, skipPublishingChecks: true, testResults: '*/target/surefire-reports/*.xml'
+            }
+        }
+        stage('docker build'){
+            steps{
+                echo 'starting docker build'
+                sh "docker build . -t indrajeet007/dockeransible1:1.0.1 "
+            }
+        }
+        stage('dockerHub push'){
+            steps{
+                withCredentials([string(credentialsId: 'docker-id', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u indrajeet007 -p ${dockerHubPwd} "
+            }
+                sh "docker push indrajeet007/dockeransible1:1.0.1 "
+            }
+        }
+        stage('docker deploy'){
+            steps{
+              ansiblePlaybook become: true, credentialsId: 'appServer', disableHostKeyChecking: true, installation: 'ansible', playbook: 'docker-deploy.yml'
+            }
+        }
+        
+    }
+    post {  
+             success {  
+                 echo "job completed successfully" 
+                 emailext body: ' "Devops Project: ${env.JOB_NAME} Build Number: ${env.BUILD_NUMBER}", cc: \'\', charset: \'UTF-8\', from: \'\', mimeType: \'text/html\'', subject: '"SUCCESS CI: Project name -> ${env.JOB_NAME}"', to: 'indrajeet.tcs007@gmail.com'
+             }  
+             failure {  
+                 emailext body: ' "Devops Project: ${env.JOB_NAME} Build Number: ${env.BUILD_NUMBER}", cc: \'\', charset: \'UTF-8\', from: \'\', mimeType: \'text/html\'', subject: '"ERROR CI: Project name -> ${env.JOB_NAME}"', to: 'indrajeet.tcs007@gmail.com'
+             }  
+             unstable {  
+                 echo 'This will run only if the run was marked as unstable'  
+             }  
+        }
+}
