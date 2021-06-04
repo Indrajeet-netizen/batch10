@@ -24,3 +24,5 @@
         name: dockeransible
         image: "indrajeet007/dockeransible1:1.0.1"
         state: started
+        published_ports: 
+          - 8080:8888
